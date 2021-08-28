@@ -27,3 +27,8 @@ def render_homepage():
         recommendations=recommendations_response.recommendations,
     )
 
+
+
+# Line 10 creates a Flask app to render a web page for the user.
+# Lines 12 to 16 create your gRPC channel and stub.
+# Lines 20 to 30 create render_homepage() to be called when the user visits the home page of your app. It returns an HTML page loaded from a template, with three science fiction book recommendations.
