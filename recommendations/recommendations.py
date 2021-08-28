@@ -68,3 +68,24 @@ def serve():
 
 if __name__ == "__main__":
     serve()
+
+
+
+
+# Line 2 imports futures because gRPC needs a thread pool. You’ll get to that later.
+
+# Line 3 imports random because you’re going to randomly select books for recommendations.
+
+# Line 14 creates the books_by_category dictionary, in which the keys are book categories and the values are lists of books in that category. In a real Recommendations microservice, the books would be stored in a database.
+
+# Line 29 defines the RecommendationService class. This is the implementation of your microservice. Note that you subclass RecommendationsServicer. This is part of the integration with gRPC that you need to do.
+
+# Line 32 defines a Recommend() method on your class. This must have the same name as the RPC you define in your protobuf file. It also takes a RecommendationRequest and returns a RecommendationResponse just like in the protobuf definition. It also takes a context parameter. The context allows you to set the status code for the response.
+
+# Lines 33 and 34 use abort() to end the request and set the status code to NOT_FOUND if you get an unexpected category. Since gRPC is built on top of HTTP/2, the status code is similar to the standard HTTP status code. Setting it allows the client to take different actions based on the code it receives. It also allows middleware, like monitoring systems, to log how many requests have errors.
+
+# Lines 36 to 40 randomly pick some books from the given category to recommend. You make sure to limit the number of recommendations to max_results. You use min() to ensure you don’t ask for more books than there are, or else random.sample will error out.
+
+# Line 38 returns a RecommendationResponse object with your list of book recommendations.
+
+
