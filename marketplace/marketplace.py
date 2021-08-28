@@ -26,3 +26,4 @@ def render_homepage():
         "homepage.html",
         recommendations=recommendations_response.recommendations,
     )
+
