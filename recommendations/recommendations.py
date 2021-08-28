@@ -88,4 +88,11 @@ if __name__ == "__main__":
 
 # Line 38 returns a RecommendationResponse object with your list of book recommendations.
 
+# Line 42 creates a gRPC server. You tell it to use 10 threads to serve requests, which is total overkill for this demo but a good default for an actual Python microservice.
+
+# Line 43 associates your class with the server. This is like adding a handler for requests.
+
+# Line 46 tells the server to run on port 50051. As mentioned before, this is the standard port for gRPC, but you could use anything you like instead.
+
+# Lines 47 and 48 call server.start() and server.wait_for_termination() to start the microservice and wait until it’s stopped. The only way to stop it in this case is to type Ctrl+C in the terminal. In a production environment, there are better ways to shut down, which you’ll get to later.
 
